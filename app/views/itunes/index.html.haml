@@ -1,0 +1,7 @@
+%div
+  - @results.each do |track|
+    %div
+      = track.each do |key, val|
+        %p
+          = "#{key} : #{val}"
+      %hr
