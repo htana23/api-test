@@ -4,8 +4,9 @@ require 'json'
 
 class Itune
   include ActiveModel::Model
+  attr_accessor :term
 
-  def self.find(term)
+  def find(term)
     url = "https://itunes.apple.com/search"
     uri = URI.parse(url)
     uri.query = {
@@ -15,11 +16,16 @@ class Itune
         limit: 3,
         lang: "ja_jp",
     }.to_param
-    json = Net::HTTP.get(uri)
-    result = JSON.parse(json)
+    result = get_json(uri)
     ary = result["results"]
     ary.each do |track|
       p track["artistName"]
     end
   end
+
+  private
+    def get_json(uri)
+      json = Net::HTTP.get(uri)
+      JSON.parse(json)
+    end
 end

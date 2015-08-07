@@ -1,4 +1,8 @@
 %div
+  = simple_form_for(@itune) do |f|
+    = f.input :term
+
+%div
   - @results.each do |track|
     %div
       = track.each do |key, val|
