@@ -12,7 +12,7 @@ class ItunesController < ApplicationController
 
   private
     def itune_params
-      params.require(:itune).permit(:term, :limit)
+      params.require(:itune).permit(:term, :limit, :entity)
     end
 
     def set_itune

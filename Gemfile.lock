@@ -36,6 +36,8 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.9.1.1)
+    enumerize (1.0.0)
+      activesupport (>= 3.2)
     erb2haml (0.1.5)
       html2haml
     erubis (2.7.0)
@@ -133,6 +135,7 @@ PLATFORMS
 
 DEPENDENCIES
   coffee-rails (~> 4.0.0)
+  enumerize
   erb2haml
   haml-rails
   jbuilder (~> 2.0)
