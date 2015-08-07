@@ -3,29 +3,41 @@ require 'uri'
 require 'json'
 
 class Itune
+  extend Enumerize
   include ActiveModel::Model
-  attr_accessor :term
+  attr_accessor :term, :limit
 
-  def limit
-    @limit
-  end
+  ENTITY_TYPE = %w(
+    allTrack
+    musicTrack
+    album
+    movie
+    podcast
+    audiobook
+    shortFilm
+    tvEpisode
+    tvSeason
+    software
+  ).freeze
+  enumerize :entity, in: ENTITY_TYPE
 
   def find(params)
     url = "https://itunes.apple.com/search"
     uri = URI.parse(url)
-    uri.query = itune_param(params)
+    uri.query = uri_query(params)
     result = get_json(uri)
     result["results"]
   end
 
   private
-    def itune_param(param)
+    def uri_query(param)
       base = {
         country: "JP",
-        entity: "musicTrack",
         lang: "ja_jp",
       }
       @limit = param[:limit]
+      @term = param[:term]
+      @entity = param[:entity]
       base.merge(param).to_param
     end
 
