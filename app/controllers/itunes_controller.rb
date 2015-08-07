@@ -6,13 +6,13 @@ class ItunesController < ApplicationController
   end
 
   def search
-    @results = @itune.find(itune_params[:term])
+    @results = @itune.find(itune_params)
     render :index
   end
 
   private
     def itune_params
-      params.require(:itune).permit(:term)
+      params.require(:itune).permit(:term, :limit)
     end
 
     def set_itune

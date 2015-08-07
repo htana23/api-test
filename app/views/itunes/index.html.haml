@@ -1,6 +1,7 @@
 %div
   = simple_form_for(@itune, url: :search_itunes, method: 'get') do |f|
     = f.input :term
+    = f.input :limit, collection: 1..20, default: 1
     = f.button :submit
 
 %div

@@ -4,16 +4,16 @@ require 'json'
 
 class Itune
   include ActiveModel::Model
-  attr_accessor :term
+  attr_accessor :term, :limit
 
-  def find(term)
+  def find(params)
     url = "https://itunes.apple.com/search"
     uri = URI.parse(url)
     uri.query = {
         country: "JP",
         entity: "musicTrack",
-        term: term,
-        limit: 3,
+        term: params[:term],
+        limit: params[:limit],
         lang: "ja_jp",
     }.to_param
     result = get_json(uri)
