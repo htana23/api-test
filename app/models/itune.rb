@@ -5,7 +5,7 @@ require 'json'
 class Itune
   extend Enumerize
   include ActiveModel::Model
-  attr_accessor :term, :limit
+  attr_accessor :term, :limit, :api
 
   ENTITY_TYPE = %w(
     allTrack
@@ -25,6 +25,7 @@ class Itune
     url = "https://itunes.apple.com/search"
     uri = URI.parse(url)
     uri.query = uri_query(params)
+    self.api = uri.to_s
     result = get_json(uri)
     result["results"]
   end
