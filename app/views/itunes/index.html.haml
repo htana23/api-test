@@ -1,6 +1,7 @@
 %div
-  = simple_form_for(@itune) do |f|
+  = simple_form_for(@itune, url: :search_itunes, method: 'get') do |f|
     = f.input :term
+    = f.button :submit
 
 %div
   - @results.each do |track|
