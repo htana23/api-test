@@ -7,7 +7,14 @@
 %div
   - @results.each do |track|
     %div
-      = track.each do |key, val|
-        %p
-          = "#{key} : #{val}"
+      - track.each do |key, val|
+        - if key =~ /Name$/
+          %div.name
+            = key + ":" + val
+        - if key =~ /Url$/
+          %div.url
+            = link_to key, val
+        - if key == 'artworkUrl100'
+          %div.image
+            = image_tag(val)
       %hr
