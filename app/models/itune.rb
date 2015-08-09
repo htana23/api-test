@@ -1,10 +1,7 @@
-require 'net/http'
-require 'uri'
-require 'json'
-
 class Itune
   extend Enumerize
   include ActiveModel::Model
+  include WebApiLib
   attr_accessor :term, :limit, :api
 
   ENTITY_TYPE = %w(
@@ -40,10 +37,5 @@ class Itune
       @term = param[:term]
       @entity = param[:entity]
       base.merge(param).to_param
-    end
-
-    def get_json(uri)
-      json = Net::HTTP.get(uri)
-      JSON.parse(json)
     end
 end
