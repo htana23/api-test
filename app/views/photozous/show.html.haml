@@ -1,0 +1,26 @@
+%div
+  = simple_form_for(@photozou, url: :search_photozou, method: 'get') do |f|
+    -#= f.input :term
+    -#= f.input :entity, include_blank: false
+    -#= f.input :limit, collection: 1..20, default: 1
+    = f.button :submit
+  -#- if @photozou.api
+    %p
+      api :
+      = link_to @itune.api, @itune.api
+%hr
+
+%div
+  - @results.each do |track|
+    %div
+      - track.each do |key, val|
+        - if key =~ /Name$/
+          %div.name
+            = key + ":" + val
+        - if key =~ /Url$/
+          %div.url
+            = link_to key, val
+        - if key == 'artworkUrl100'
+          %div.image
+            = image_tag(val)
+      %hr
