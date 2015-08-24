@@ -4,10 +4,10 @@
     = f.input :entity, include_blank: false
     = f.input :limit, collection: 1..20, default: 1
     = f.button :submit
-  - if @itune.api
+  - if @itune.url
     %p
       api :
-      = link_to @itune.api, @itune.api
+      = link_to @itune.url, @itune.url
 %hr
 
 %div

@@ -6,17 +6,17 @@ class PhotozousController < ApplicationController
 	end
 
 	def search
-		@results = @itune.find(itune_params)
+		@results = @photozou.find(photozou_params)
 		if @results
-			render :index
+			render :show
 		else
-			redirect_to itunes_path
+			redirect_to root_path
 		end
 	end
 
 	private
-	def itune_params
-		params.require(:itune).permit(:term, :limit, :entity)
+	def photozou_params
+		params.require(:photozou).permit(:keyword)
 	end
 
 	def set_photozou
